@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   GLOBAL HIGH-CONTRAST MAPPING
+   Every page was written with Tailwind "slate" utilities and the
+   .glass-panel / .glass-card helpers. Instead of rewriting 10k lines,
+   those utilities are mapped onto the design tokens in hc-theme.css so
+   dark AND light mode share one high-contrast look everywhere
+   (navbar, sidebar, cards, tables, forms, modals).
+   ──────────────────────────────────────────────────────────────── */
+
+html, body {
+  background-color: var(--hc-bg) !important;
+  color: var(--hc-text);
+  font-family: var(--font-inter);
+}
+.font-outfit { font-family: var(--font-outfit); }
+
+/* Surfaces */
+.glass-panel,
+.glass-card {
+  background: var(--hc-surface) !important;
+  backdrop-filter: none !important;
+  border: 1px solid var(--hc-border) !important;
+  box-shadow: var(--hc-shadow) !important;
+}
+.glass-card { background: var(--hc-surface) !important; }
+
+.bg-slate-950, .bg-slate-950\/90, .bg-slate-950\/80, .bg-slate-950\/60, .bg-slate-950\/50, .bg-slate-950\/40, .bg-slate-950\/20,
+.bg-slate-900, .bg-slate-900\/90, .bg-slate-900\/80, .bg-slate-900\/60, .bg-slate-900\/50, .bg-slate-900\/40 {
+  background-color: var(--hc-surface-2) !important;
+}
+.bg-slate-800, .bg-slate-800\/80, .bg-slate-800\/60, .bg-slate-800\/50, .bg-slate-800\/40, .bg-slate-800\/20, .bg-slate-800\/10,
+.bg-slate-700 {
+  background-color: var(--hc-surface-3) !important;
+}
+.hover\:bg-slate-900:hover, .hover\:bg-slate-900\/50:hover, .hover\:bg-slate-900\/40:hover, .hover\:bg-slate-900\/60:hover,
+.hover\:bg-slate-800:hover, .hover\:bg-slate-800\/50:hover, .hover\:bg-slate-800\/60:hover, .hover\:bg-slate-700:hover {
+  background-color: var(--hc-surface-3) !important;
+}
+/* Light-surface utilities used on a few forms/receipts */
+.bg-white, .bg-slate-50, .bg-slate-100 { background-color: var(--hc-surface) !important; }
+
+/* Modal / drawer backdrops must stay translucent */
+.fixed.inset-0.bg-slate-950\/80, .fixed.inset-0.bg-slate-950\/60, .fixed.inset-0.bg-slate-950\/90,
+.fixed.inset-0.bg-slate-900\/80, .fixed.inset-0.bg-slate-900\/90,
+.fixed.inset-0.bg-black\/40, .fixed.inset-0.bg-black\/60, .fixed.inset-0.bg-black\/80, .fixed.inset-0.bg-black\/90 {
+  background-color: rgba(2, 6, 23, 0.72) !important;
+}
+
+/* Borders & dividers */
+.border-slate-900, .border-slate-800, .border-slate-800\/80, .border-slate-800\/60, .border-slate-700, .border-slate-700\/80,
+.border-slate-600, .border-slate-400, .border-slate-300, .border-slate-200, .border-white\/20 {
+  border-color: var(--hc-border) !important;
+}
+.hover\:border-slate-700:hover, .hover\:border-slate-700\/80:hover, .hover\:border-slate-600:hover, .hover\:border-slate-500:hover {
+  border-color: var(--hc-border-strong) !important;
+}
+.divide-slate-800 > :not([hidden]) ~ :not([hidden]),
+.divide-slate-800\/60 > :not([hidden]) ~ :not([hidden]),
+.divide-slate-800\/50 > :not([hidden]) ~ :not([hidden]),
+.divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--hc-border) !important;
+}
+
+/* Text */
+.text-white, .text-slate-100, .text-slate-200 { color: var(--hc-text) !important; }
+.text-slate-300, .text-slate-400 { color: var(--hc-text-2) !important; }
+.text-slate-500, .text-slate-600 { color: var(--hc-text-3) !important; }
+.hover\:text-white:hover, .hover\:text-slate-200:hover, .hover\:text-slate-100:hover { color: var(--hc-text) !important; }
+.hover\:text-slate-300:hover { color: var(--hc-text-2) !important; }
+/* Dark-ink utilities (used on light surfaces such as receipts) become theme ink */
+.text-slate-700, .text-slate-800, .text-slate-900, .text-slate-950 { color: var(--hc-text) !important; }
+
+/* Accent text: keep the hue, guarantee contrast in light mode */
+html[data-theme="light"] .text-blue-400, html[data-theme="light"] .text-blue-300 { color: #1d4ed8 !important; }
+html[data-theme="light"] .text-emerald-400, html[data-theme="light"] .text-emerald-300 { color: #047857 !important; }
+html[data-theme="light"] .text-amber-400, html[data-theme="light"] .text-amber-300 { color: #b45309 !important; }
+html[data-theme="light"] .text-rose-400, html[data-theme="light"] .text-rose-300 { color: #be123c !important; }
+html[data-theme="light"] .text-red-400 { color: #b91c1c !important; }
+html[data-theme="light"] .text-purple-400, html[data-theme="light"] .text-purple-300 { color: #6d28d9 !important; }
+html[data-theme="light"] .text-pink-400 { color: #be185d !important; }
+html[data-theme="light"] .text-indigo-400 { color: #4338ca !important; }
+html[data-theme="light"] .text-cyan-400 { color: #0e7490 !important; }
+html[data-theme="light"] .text-orange-400 { color: #c2410c !important; }
+html[data-theme="light"] .text-teal-400 { color: #0f766e !important; }
+
+/* Tinted chips (bg-<color>-500/10 + border-<color>-500/20) get a firmer edge in light mode */
+html[data-theme="light"] [class*="bg-blue-500/1"], html[data-theme="light"] [class*="bg-blue-600/1"] { background-color: #dbeafe !important; }
+html[data-theme="light"] [class*="bg-emerald-500/1"], html[data-theme="light"] [class*="bg-emerald-600/1"] { background-color: #d1fae5 !important; }
+html[data-theme="light"] [class*="bg-amber-500/1"], html[data-theme="light"] [class*="bg-amber-600/1"] { background-color: #fef3c7 !important; }
+html[data-theme="light"] [class*="bg-rose-500/1"], html[data-theme="light"] [class*="bg-rose-600/1"] { background-color: #ffe4e6 !important; }
+html[data-theme="light"] [class*="bg-purple-500/1"], html[data-theme="light"] [class*="bg-purple-600/1"] { background-color: #ede9fe !important; }
+html[data-theme="light"] [class*="bg-pink-500/1"] { background-color: #fce7f3 !important; }
+html[data-theme="light"] .bg-blue-950, html[data-theme="light"] .bg-blue-950\/50, html[data-theme="light"] .bg-blue-950\/80 { background-color: #dbeafe !important; }
+html[data-theme="light"] .bg-emerald-950, html[data-theme="light"] .bg-emerald-950\/30, html[data-theme="light"] .bg-emerald-950\/20 { background-color: #d1fae5 !important; }
+html[data-theme="light"] .bg-rose-950, html[data-theme="light"] .bg-rose-950\/40, html[data-theme="light"] .bg-rose-950\/60 { background-color: #ffe4e6 !important; }
+
+/* Dark mode: navy tints become a neutral-black surface with a subtle blue wash */
+html:not([data-theme="light"]) .bg-blue-950,
+html:not([data-theme="light"]) .bg-blue-950\/80,
+html:not([data-theme="light"]) .bg-blue-950\/50,
+html:not([data-theme="light"]) .bg-blue-950\/40 {
+  background-color: rgba(59, 130, 246, 0.10) !important;
+}
+html:not([data-theme="light"]) .bg-emerald-950,
+html:not([data-theme="light"]) .bg-emerald-950\/30,
+html:not([data-theme="light"]) .bg-emerald-950\/20 {
+  background-color: rgba(34, 197, 94, 0.10) !important;
+}
+html:not([data-theme="light"]) .bg-rose-950,
+html:not([data-theme="light"]) .bg-rose-950\/40,
+html:not([data-theme="light"]) .bg-rose-950\/60 {
+  background-color: rgba(244, 63, 94, 0.10) !important;
+}
+
+/* Tables sit on the card surface; header row is one step lighter */
+table { background-color: transparent; }
+
+/* Forms */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea {
+  background-color: var(--hc-surface-2) !important;
+  color: var(--hc-text) !important;
+  border-color: var(--hc-border) !important;
+}
+input::placeholder, textarea::placeholder { color: var(--hc-text-3) !important; opacity: 1; }
+input:focus, select:focus, textarea:focus { border-color: var(--hc-border-strong) !important; }
+select option { background-color: var(--hc-surface) !important; color: var(--hc-text) !important; }
+.bg-transparent { background-color: transparent !important; }
+
+/* Tables */
+table thead tr { background-color: var(--hc-surface-2) !important; color: var(--hc-text-2) !important; border-bottom: 1px solid var(--hc-border) !important; }
+table thead th { color: var(--hc-text-2) !important; }
+table tbody tr { border-color: var(--hc-border) !important; }
+table tbody tr:hover { background-color: var(--hc-surface-2) !important; }
+
+/* Scrollbars */
+* { scrollbar-width: thin; scrollbar-color: var(--hc-surface-3) transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: var(--hc-surface-3); border-radius: 8px; }
+
+/* Motion */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.animate-fadeIn { animation: fadeIn .25s ease-out both; }
+@keyframes shake { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-4px) } 75% { transform: translateX(4px) } }
+.animate-shake { animation: shake .3s ease-in-out; }
+
+/* ────────────────────────────────────────────────────────────────
+   PRINT (receipts): always ink on paper, never the app theme
+   ──────────────────────────────────────────────────────────────── */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html, body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+
+  .thermal-mode,
+  .a4-mode {
+    color: #000 !important;
+    background-color: #f3f1e4 !important;
+    margin: 0 auto !important;
+  }
+  .thermal-mode {
+    width: 80mm !important;
+    max-width: 80mm !important;
+    padding: 2mm !important;
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+  }
+  .thermal-mode table { width: 100% !important; font-size: 10px !important; }
+  .a4-mode {
+    width: 210mm !important;
+    padding: 15mm !important;
+    font-size: 13px !important;
+  }
+  .thermal-mode *, .a4-mode * { color: #000 !important; background: transparent !important; border-color: #999 !important; }
+}
