@@ -227,7 +227,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             <button className="hc-icon-btn" onClick={toggleTheme} title="Toggle theme">
               {theme === "dark" ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
             </button>
-            <a href="http://localhost:8000/docs" target="_blank" rel="noreferrer" className="hc-icon-btn hidden sm:grid" title="API docs">
+            <a
+              href={(process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1").replace(/\/api\/v1\/?$/, "") + "/docs"}
+              target="_blank"
+              rel="noreferrer"
+              className="hc-icon-btn hidden sm:grid"
+              title="API docs"
+            >
               <HelpCircle className="w-[18px] h-[18px]" />
             </a>
 
