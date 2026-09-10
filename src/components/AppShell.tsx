@@ -228,7 +228,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               {theme === "dark" ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
             </button>
             <a
-              href={(process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1").replace(/\/api\/v1\/?$/, "") + "/docs"}
+              href={(process.env.NEXT_PUBLIC_API_URL || "https://sms-backend-f8hn.onrender.com/api/v1").replace(/\/api\/v1\/?$/, "") + "/docs"}
               target="_blank"
               rel="noreferrer"
               className="hc-icon-btn hidden sm:grid"
